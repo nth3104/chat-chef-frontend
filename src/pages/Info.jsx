@@ -39,7 +39,7 @@ const Info = () => {
 
   const handleNext = () => {
     console.log(ingredientList);
-    // history("/chat");
+    history("/chat");
   };
 
   // view
