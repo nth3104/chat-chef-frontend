@@ -5,7 +5,7 @@ import AddButton from "../components/AddButton";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 
-const Info = () => {
+const Info = ({sendIngredientList}) => {
   // logic
   const history = useNavigate();
 
@@ -38,8 +38,20 @@ const Info = () => {
   };
 
   const handleNext = () => {
-    console.log(ingredientList);
-    history("/chat");
+    sendIngredientList(ingredientList);
+      // 입력값이 있는 배열
+    const filterDataList = ingredientList.filter(
+      (item) => item.value.trim() !== ""
+    );
+    console.log("🚀filterDataList:", filterDataList);
+    if (filterDataList.length) {
+      // 재료 입력값이 있는 경우
+      history("/chat");
+      return;
+    }
+    // 재료 입력값이 없는 경우
+    alert("재료를 최소 1개이상 입력해주세요");
+
   };
 
   // view
